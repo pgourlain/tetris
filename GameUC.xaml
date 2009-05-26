@@ -1,0 +1,170 @@
+<UserControl x:Class="GeniusTetris.GameUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:pgo="clr-namespace:GeniusTetris" Name="game"
+    Focusable="True" Loaded="OnLoaded">
+    <UserControl.Resources>
+        <DataTemplate x:Key="OptionsDataTemplate">
+            <Grid Height="15" Width="15">
+                <Rectangle x:Name="rect" Margin="-0.1,-0.1,-0.1,-0.1"    
+                   Fill="{StaticResource chor}"/>
+                <TextBlock Text="{Binding ., Converter={StaticResource NumberToText}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        <Style x:Key="ExpenseScroller"
+       TargetType="{x:Type ItemsControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ItemsControl}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" 
+                        IsItemsHost="True" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="PlayersInMeshStyle" TargetType="{x:Type ListBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Border CornerRadius="8" Background="AliceBlue">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <StackPanel Orientation="Vertical" IsItemsHost="True"/>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </UserControl.Resources>
+    <UserControl.InputBindings>
+        <KeyBinding Key="Space" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="Drop" />
+        <KeyBinding Key="Left" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="Left" />
+        <KeyBinding Key="Right" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="Right" />
+        <KeyBinding Key="Up" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="Up" />
+        <KeyBinding Key="Down" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="Down" />
+        <KeyBinding Key="S" Modifiers="Control" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="StartAlone" />
+        <KeyBinding Key="D1" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="1" />
+        <KeyBinding Key="D2" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="2" />
+        <KeyBinding Key="D3" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="3" />
+        <KeyBinding Key="D4" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="4" />
+        <KeyBinding Key="D5" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="5" />
+        <KeyBinding Key="D6" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="6" />
+        <KeyBinding Key="D7" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="7" />
+        <KeyBinding Key="D8" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="8" />
+        <KeyBinding Key="D9" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="9" />
+        <KeyBinding Key="A" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="a" />
+    </UserControl.InputBindings>
+    <UserControl.CommandBindings>
+        <CommandBinding Executed="OnGameAction" CanExecute="OnCanGameAction" Command="{x:Static pgo:GameUC.GameAction}" />
+    </UserControl.CommandBindings>
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top" Background="Transparent">
+                <MenuItem Header="_File">
+                    <MenuItem Command="ApplicationCommands.Close" />
+                </MenuItem>
+                <MenuItem Header="_Game">
+                    <MenuItem Header="_Start alone" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="StartAlone"/>
+                    <MenuItem Header="Stop game" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="StopGame"/>
+                    <Separator/>
+                    <MenuItem Header="St_art Multiplayer game" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="StartMultiplayerGame" />
+                    <Separator/>
+                    <MenuItem Header="Connect to mesh" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="ConnectToMesh"/>
+                    <MenuItem Header="Disconnect from mesh" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="DisconnectToMesh"/>
+                </MenuItem>
+                <!--<MenuItem Header="Server">
+                    <MenuItem Header="S_tart server game" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="StartServerGame" />
+                    <MenuItem Header="Stop server game" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="StopServerGame" />
+                </MenuItem>-->
+                <MenuItem Header="_Options" >
+                    <MenuItem Header="Network options" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="OnNetworkOptions" />
+                </MenuItem>
+                <MenuItem Header="_About" >
+                    <MenuItem Header="_Help" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="OnHelp"/>
+                    <MenuItem Header="_About" Command="{x:Static pgo:GameUC.GameAction}" CommandParameter="OnAbout"/>
+                </MenuItem>
+                <!--<MenuItem Header="_Test" Click="OnTestClick"/>-->
+
+                <!--<MenuItem Header="{x:Static SystemParameters.KeyboardDelay}"/>-->
+            </Menu>
+            <Grid VerticalAlignment="Stretch">
+                <DockPanel>
+                    <pgo:BoardUC x:Name="board"  DockPanel.Dock="Left" Focusable="True"/>
+                    <Grid DockPanel.Dock="Left" ShowGridLines="False">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Row="0" Grid.Column="0">
+                            <DockPanel >
+                                <pgo:PreviewBlockUC x:Name="previewctl" DockPanel.Dock="Left"/>
+                                <Viewbox Stretch="Uniform" DockPanel.Dock="Top">
+                                    <StackPanel >
+                                        <Label Content="Score :" HorizontalContentAlignment="Left"/>
+                                        <Label Content="{Binding Path=Game.Score, ElementName='game'}" />
+                                        <Label Content="Lines :" />
+                                        <Label Content="{Binding Path=Game.LinesCompleted, ElementName='game'}" />
+                                        <Label Content="Level :" />
+                                        <Label Content="{Binding Path=Game.Level, ElementName='game'}" />
+                                    </StackPanel>
+                                </Viewbox>
+                                <TextBlock DockPanel.Dock="Bottom" x:Name="tbLog"/>
+                            </DockPanel>
+                        </Border>
+                        <DockPanel LastChildFill="True" Grid.Row="1" Grid.Column="0">
+                            <Label Content="Players in mesh" DockPanel.Dock="Top"/>
+                            <ListBox Name="lbPlayersInMesh" DockPanel.Dock="Top" Style="{StaticResource PlayersInMeshStyle}" 
+                                     Focusable="False" DisplayMemberPath="NickName"
+                                     ItemsSource="{Binding Path=CurrentApplication.PlayersInMeshList, ElementName='game'}">
+
+                            </ListBox>
+                        </DockPanel>
+                        <pgo:BoardUC x:Name="board1"  Grid.Row="0" Grid.Column="1" OffLine="Visible"/>
+                        <pgo:BoardUC x:Name="board2"  Grid.Row="0" Grid.Column="2" OffLine="Visible"/>
+                        <pgo:BoardUC x:Name="board3"  Grid.Row="0" Grid.Column="3" OffLine="Visible"/>
+                        <pgo:BoardUC x:Name="board4"  Grid.Row="1" Grid.Column="1" OffLine="Visible"/>
+                        <pgo:BoardUC x:Name="board5"  Grid.Row="1" Grid.Column="2" OffLine="Visible"/>
+                        <pgo:BoardUC x:Name="board6"  Grid.Row="1" Grid.Column="3" OffLine="Visible"/>
+                        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1">
+                            <DockPanel Margin="0,1,0,20">
+                                <TextBlock Text="In game" DockPanel.Dock="Top"/>
+                                <ListBox Name="lbPlayersInGame" Style="{StaticResource PlayersInMeshStyle}" 
+                                     Focusable="False" DisplayMemberPath="NickName"
+                                     ItemsSource="{Binding Path=CurrentApplication.GameMembersList, ElementName='game'}">
+
+                                </ListBox>
+                            </DockPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Border BorderThickness ="2" BorderBrush="Gray" Height="20" VerticalAlignment="Bottom">
+                                <ItemsControl ItemsSource="{Binding Path=Options, ElementName='game'}" Style="{StaticResource ExpenseScroller}" 
+                          ItemTemplate="{StaticResource OptionsDataTemplate}" Focusable="False">
+                                </ItemsControl>
+                            </Border>
+                        </Grid>
+                        <pgo:BoardUC x:Name="board7"  Grid.Row="2" Grid.Column="2" OffLine="Visible"/>
+                        <pgo:BoardUC x:Name="board8"  Grid.Row="2" Grid.Column="3" OffLine="Visible"/>
+
+                    </Grid>
+                </DockPanel>
+
+            </Grid>
+        </DockPanel>
+        <Grid DataContext="{Binding Path=CurrentApplication, ElementName='game'}" Visibility="{Binding WorkingCount, Converter={StaticResource NumberToVisibility}}">
+            <Rectangle Fill="White" Opacity="0.7"></Rectangle>
+            <Border CornerRadius="15" Background="LightGray" Margin="20,0,20,0" VerticalAlignment="Center" MinHeight="100" BorderBrush="Gray" BorderThickness="2">
+                <TextBlock Text="{Binding WorkingMessage}" FontSize="20" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center"/>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

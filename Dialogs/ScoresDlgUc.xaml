@@ -1,0 +1,34 @@
+<UserControl x:Class="GeniusTetris.Dialogs.ScoresDlgUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+    xmlns:dat="clr-namespace:System.Windows.Data;assembly=PresentationFramework"
+    Name="scoreuc"
+    Loaded="OnLoaded">
+  <UserControl.Resources>
+    <DataTemplate x:Key="scoretemplate">
+      <Grid HorizontalAlignment="Stretch">
+        <TextBlock Text="{Binding NickName}" />
+        <TextBlock Text="{Binding Score}" HorizontalAlignment="Right" Margin="0,0,35,0"/>
+        <TextBlock Text="points" HorizontalAlignment="Right"/>
+      </Grid>
+    </DataTemplate>
+
+  </UserControl.Resources>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="30"/>
+      <RowDefinition Height="10"/>
+    </Grid.RowDefinitions>
+
+    <ListBox Name="lbScores" Grid.Row="0" Background="Transparent" 
+      ItemTemplate="{StaticResource scoretemplate}"         
+             HorizontalContentAlignment="Stretch" Margin="30,0,30,0"
+             ItemsSource="{Binding Path=.}">
+    </ListBox>
+    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
+      <Button Name="bOk" Content="Ok" Width="75" Click="OkClick" Padding="10,0,10,0"/>
+    </StackPanel>
+  </Grid>
+</UserControl>

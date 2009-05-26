@@ -1,0 +1,12 @@
+<UserControl x:Class="GeniusTetris.PreviewBlockUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:pgo="clr-namespace:GeniusTetris" 
+    >
+  <Grid>
+    <DockPanel>
+      <Label Content="Next blocks" DockPanel.Dock="Top" HorizontalContentAlignment="Center"></Label>
+      <pgo:BoardUC x:Name="preview" DockPanel.Dock="Top" PlayerName=""/>
+    </DockPanel>
+  </Grid>
+</UserControl>

@@ -1,0 +1,12 @@
+ok 1) Quand un option est recu, il faut propagé le board sur le maillage
+ok 2) quand un joueur à terminé il doit envoyer son score sur le maillage
+ok 3) pouvoir cacher le panel du haut indiquant le nom du joueur
+4) numéroter les fenêtre des joueurs correspondant au touches
+ok 5) liste des joueurs connectés au mesh
+6) ne pas pouvoir envoyé une option à un joueur en gameover
+7) à la deuxième partie il n'ai plus possible d'envoyer des options...
+	à partir du client
+ok 8) Quand j'ai trois client, le troisième n'a que la vue du server et pas des autres
+9) quand on recommence le jeu il faut effacer les autres board
+10) tester les changements de niveau en mode multijoueurs
+11) trier les joueurs par score quand on affiche les scores

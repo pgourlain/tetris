@@ -1,0 +1,55 @@
+<UserControl x:Class="GeniusTetris.Dialogs.OptionsUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Loaded="OnLoaded">
+  <UserControl.Resources>
+    <Style x:Key="Error" TargetType="{x:Type TextBox}">
+      <Setter Property="Validation.ErrorTemplate">
+        <Setter.Value>
+          <ControlTemplate>
+            <DockPanel>
+              
+              <AdornedElementPlaceholder/>
+              <TextBlock Foreground="Red" FontSize="15">!</TextBlock>
+            </DockPanel>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+      <Style.Triggers>
+        <Trigger Property="Validation.HasError" Value="true">
+          <Setter Property="ToolTip"
+						Value="{Binding RelativeSource={RelativeSource Self}, 
+                       Path=(Validation.Errors)[0].ErrorContent}"/>
+        </Trigger>
+      </Style.Triggers>
+    </Style>
+  </UserControl.Resources>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" MinHeight="50"/>
+      <RowDefinition Height="30"/>
+      <RowDefinition Height="10"/>
+    </Grid.RowDefinitions>
+    <DockPanel Grid.Row="0" LastChildFill="True">
+      <StackPanel Margin="10,0,10,0">
+        <GroupBox Header="Player" BorderBrush="Blue" Margin="0,0,0,5">
+          <StackPanel Orientation="Horizontal">
+            <TextBlock Text="it's your player id in room " Margin="0,0,0,3" VerticalAlignment="Center"/>
+            <TextBox Name="tbPlayer" Width="100" Text="{Binding Path='Member'}" />
+          </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Configuration" BorderBrush="Blue" Margin="0,0,0,5">
+          <DockPanel LastChildFill="True" Margin="0,0,0,3">
+            <TextBlock Margin="0,0,10,0" DockPanel.Dock="Left" VerticalAlignment="Center" ToolTip="give your solution name, see http://portal.ex.azure.microsoft.com/ to create a solution">solution name : </TextBlock>
+            <TextBox Name="tbServerBaseAddress" DockPanel.Dock="Left" Text="{Binding Path='SolutionName'}"/>
+          </DockPanel>
+        </GroupBox>
+      </StackPanel>
+    </DockPanel>
+
+    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
+      <Button Content="Ok" Width="75" Click="CloseOkClick" Padding="10,0,10,0"/>
+      <Button Content="Cancel" Width="75" Click="CloseClick" Padding="10,0,10,0"/>
+    </StackPanel>
+  </Grid>
+</UserControl>

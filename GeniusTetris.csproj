@@ -1,0 +1,240 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{37A35FB3-63EB-4E22-81DD-16458F4CCD7A}</ProjectGuid>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <RootNamespace>GeniusTetris</RootNamespace>
+    <AssemblyName>GeniusTetris</AssemblyName>
+    <WarningLevel>4</WarningLevel>
+    <OutputType>winexe</OutputType>
+    <MinFrameworkVersionRequired>3.0</MinFrameworkVersionRequired>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>false</MapFileExtensions>
+    <ApplicationVersion>1.0.0.*</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <PublishUrl>Publish\</PublishUrl>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <ApplicationIcon>Images\app.ico</ApplicationIcon>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.IdentityModel" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="3D\View3DUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BoardUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\AboutUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\ExceptionDlgUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\HelpUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\MessageDlgUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\OptionsUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\ScoresDlgUc.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GameUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainFrm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PreviewBlockUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\MenuStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Blocks.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainFrm.xaml.cs">
+      <DependentUpon>MainFrm.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="3D\Tetris3DModelProvider.cs" />
+    <Compile Include="3D\View3DUC.xaml.cs">
+      <DependentUpon>View3DUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BoardUC.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>BoardUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AniTilePanel.cs" />
+    <Compile Include="Dialogs\AboutUC.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>AboutUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\DataOptions.cs" />
+    <Compile Include="Dialogs\DialogStringAnimation.cs" />
+    <Compile Include="Dialogs\ExceptionDlgUC.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>ExceptionDlgUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\HelpUC.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>HelpUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\MessageDlgUC.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>MessageDlgUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\OptionsUC.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>OptionsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ScoresDlgUc.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>ScoresDlgUc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExceptionsManager.cs" />
+    <Compile Include="GameUC.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>GameUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NumberToCharacterConverter.cs" />
+    <Compile Include="NumberToColorConverter.cs" />
+    <Compile Include="NumberToVisibilityConverter.cs" />
+    <Compile Include="OneBlockPresenter.cs" />
+    <Compile Include="PreviewBlockUC.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>PreviewBlockUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ProxyGame.cs" />
+    <Compile Include="Services\IModalDialog.cs" />
+    <Compile Include="Services\ModalService.cs" />
+    <Compile Include="Utils\StandardTimer.cs" />
+    <Compile Include="Utils\WpfTimer.cs" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="GeniusTetris.Core\GeniusTetris.Core.csproj">
+      <Project>{AE613139-D082-4AC1-89E8-2B56B710D762}</Project>
+      <Name>GeniusTetris.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="GeniusTetris.Multiplayer.Cloud\GeniusTetris.Multiplayer.Cloud.csproj">
+      <Project>{57AF861D-5995-46A6-9515-B8CF694C788D}</Project>
+      <Name>GeniusTetris.Multiplayer.Cloud</Name>
+    </ProjectReference>
+    <ProjectReference Include="GeniusTetris.Multiplayer\GeniusTetris.Multiplayer.csproj">
+      <Project>{F910FCE2-0FF5-4843-9788-9D1164C1B303}</Project>
+      <Name>GeniusTetris.Multiplayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\app.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="todo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Doc\test.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Doc\doc.htm" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

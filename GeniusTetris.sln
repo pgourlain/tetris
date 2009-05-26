@@ -1,0 +1,87 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeniusTetris", "GeniusTetris.csproj", "{37A35FB3-63EB-4E22-81DD-16458F4CCD7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeniusTetris.Core", "GeniusTetris.Core\GeniusTetris.Core.csproj", "{AE613139-D082-4AC1-89E8-2B56B710D762}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeniusP2PManager", "GeniusP2PManager\GeniusP2PManager.csproj", "{D264896E-E4D6-4372-AF7B-9F7FA9850816}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeniusTetrisWorkflow", "GeniusTetrisWorkflow\GeniusTetrisWorkflow.csproj", "{6A0DA2A4-04CD-491F-9D7A-3416E5960E5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeniusTetris.Multiplayer", "GeniusTetris.Multiplayer\GeniusTetris.Multiplayer.csproj", "{F910FCE2-0FF5-4843-9788-9D1164C1B303}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeniusTetris.Multiplayer.Cloud", "GeniusTetris.Multiplayer.Cloud\GeniusTetris.Multiplayer.Cloud.csproj", "{57AF861D-5995-46A6-9515-B8CF694C788D}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GeniusTetrisSetup", "GeniusTetrisSetup\GeniusTetrisSetup.vdproj", "{EADB1F26-F392-43CB-A5D5-32F4910127C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "V1", "V1", "{C518C9AE-259C-46F4-BAA4-3ADBEF62F7D9}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs02.codeplex.com/
+		SccProjectUniqueName0 = GeniusTetris.csproj
+		SccProjectName0 = .
+		SccAuxPath0 = https://tfs02.codeplex.com
+		SccLocalPath0 = .
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = GeniusTetris.Core\\GeniusTetris.Core.csproj
+		SccProjectName1 = GeniusTetris.Core
+		SccAuxPath1 = https://tfs02.codeplex.com
+		SccLocalPath1 = GeniusTetris.Core
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName2 = GeniusP2PManager\\GeniusP2PManager.csproj
+		SccProjectTopLevelParentUniqueName2 = GeniusTetris.sln
+		SccProjectName2 = GeniusP2PManager
+		SccAuxPath2 = https://tfs02.codeplex.com
+		SccLocalPath2 = GeniusP2PManager
+		SccProvider2 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName3 = GeniusTetrisWorkflow\\GeniusTetrisWorkflow.csproj
+		SccProjectTopLevelParentUniqueName3 = GeniusTetris.sln
+		SccProjectName3 = GeniusTetrisWorkflow
+		SccAuxPath3 = https://tfs02.codeplex.com
+		SccLocalPath3 = GeniusTetrisWorkflow
+		SccProvider3 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37A35FB3-63EB-4E22-81DD-16458F4CCD7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37A35FB3-63EB-4E22-81DD-16458F4CCD7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37A35FB3-63EB-4E22-81DD-16458F4CCD7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37A35FB3-63EB-4E22-81DD-16458F4CCD7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE613139-D082-4AC1-89E8-2B56B710D762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE613139-D082-4AC1-89E8-2B56B710D762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE613139-D082-4AC1-89E8-2B56B710D762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE613139-D082-4AC1-89E8-2B56B710D762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D264896E-E4D6-4372-AF7B-9F7FA9850816}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D264896E-E4D6-4372-AF7B-9F7FA9850816}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D264896E-E4D6-4372-AF7B-9F7FA9850816}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D264896E-E4D6-4372-AF7B-9F7FA9850816}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A0DA2A4-04CD-491F-9D7A-3416E5960E5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A0DA2A4-04CD-491F-9D7A-3416E5960E5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A0DA2A4-04CD-491F-9D7A-3416E5960E5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A0DA2A4-04CD-491F-9D7A-3416E5960E5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F910FCE2-0FF5-4843-9788-9D1164C1B303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F910FCE2-0FF5-4843-9788-9D1164C1B303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F910FCE2-0FF5-4843-9788-9D1164C1B303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F910FCE2-0FF5-4843-9788-9D1164C1B303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57AF861D-5995-46A6-9515-B8CF694C788D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57AF861D-5995-46A6-9515-B8CF694C788D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57AF861D-5995-46A6-9515-B8CF694C788D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57AF861D-5995-46A6-9515-B8CF694C788D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EADB1F26-F392-43CB-A5D5-32F4910127C5}.Debug|Any CPU.ActiveCfg = Debug
+		{EADB1F26-F392-43CB-A5D5-32F4910127C5}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6A0DA2A4-04CD-491F-9D7A-3416E5960E5B} = {C518C9AE-259C-46F4-BAA4-3ADBEF62F7D9}
+		{D264896E-E4D6-4372-AF7B-9F7FA9850816} = {C518C9AE-259C-46F4-BAA4-3ADBEF62F7D9}
+	EndGlobalSection
+EndGlobal

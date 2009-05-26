@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+	
+Après avoir installé le nouveau framework .Net fourni par Microsoft dans sa version 3.0, j'ai voulu exploiter les nouvelles briques fournies (WPF, WCF, WF) au travers d'un petit jeu que tout le monde connait, puisqu'il s'agit d'un Tetris. 
+        <br />
+        Dans le but d'utiliser toutes les briques du framework 3.0 (enfin presque, puisque j'ai laissé de coté InfoCard), j'ai réalisé ce jeu en mode multijoueurs (jusqu'à 9 joueurs). 
+        <br />
+        Pour les fonctionnalité offerte par ce jeu, je me suis inspiré de "Tetrinet", pour
+        ceux qui connaissent.<br />
+        Je rappelle brièvement les règles : Empiler des formes géometrique les unes sur
+        les autres afin de constituer des lignes complètes. Lorsque des lignes sont complète,
+        elle disparaissent, et une options par ligne complète apparait alors. Et c'est ici
+        que le mode multijoueur devient intéressant puisque ces options on peut s'en servir
+        pour soi, mais aussi contre ses adversaires ( il y a des bonnes options, mais aussi
+        des moins bonnes... :-)).<br /><img src="http://www.gotdotnet.com/codegallery/customization/images.aspx?fileId=2b6b06b5-167b-47d4-b13d-15dd85e29c4e&id=084d51d7-a295-4991-921e-4a861432c703&flg=1" />&nbsp;<br />
+        <br />
+        Vous l'aurez compris, l'interface graphique est réalisé via la couche WPF (Windows
+        Presentation Foundation). La communication entre les joueurs utilise la couche WCF
+        (Windows Communication Foundation). Enfin pour la gestion du demarrage du jeu en
+        mode multijoueurs un workflow est utilisé via la brique WF (Workflow Foundation).<br />
+        <br />
+        <span style="text-decoration: underline"><strong>L'UI</strong></span> &nbsp;<br />
+        elle se décompose en 2 couches. La fenêtre principale contient le jeu et la gestion
+        des boites de dialogue.<br />
+        <img src="http://www.gotdotnet.com/codegallery/customization/images.aspx?fileId=f2907c47-9041-45aa-bcd7-f7ab530f3bc6&id=084d51d7-a295-4991-921e-4a861432c703&flg=1" /><br />
+        <br />
+        Pour l'affichage du jeu, j'ai utilisé le pattern MVP (Model-View-Controller)<br />
+        <img src="http://www.gotdotnet.com/codegallery/customization/images.aspx?fileId=8fbc7a50-fecf-4d28-8d3c-1849f42603f9&id=084d51d7-a295-4991-921e-4a861432c703&flg=1" /><br />
+        Le model étant complètement autonome, non orienté UI, il est tout à fait possible
+        de le réutiliser et d'y mettre une autre interface graphique.<br />
+        &nbsp;<br />
+        <br />
+        <span style="text-decoration: underline"><strong>Le réseau<br />
+        </strong></span>Grâce à WCF, mettre une interface sur le réseau est un jeu d'enfant.
+        Fini le remoting (SAO,CAO) et autre RemotingServices.GetLifetimeService(). Bref
+        pour faire dialoguer mes applications a travers le réseau, je suis parti d'un exemple du SDK (le chat) en P2P.
+En effet en mode multijoueur je crée un maillage sur le
+        server, ou chacun des joueurs peut s'y connecter.<br />
+        <img src="http://www.gotdotnet.com/codegallery/customization/images.aspx?fileId=794c56b8-a056-4ab0-8bb0-9afbcbebe28f&id=084d51d7-a295-4991-921e-4a861432c703&flg=1" /><br />
+        Une fois que tous les joueurs sont connectés au maillage, il "discute" au travers
+        d'une interface publiée<br />
+        <img src="http://www.gotdotnet.com/codegallery/customization/images.aspx?fileId=c9a93b4e-dc4a-41dd-9bd6-14a20f409a4b&id=084d51d7-a295-4991-921e-4a861432c703&flg=1" /><br />
+        à chaque appel d'une méthode sur cette interface par un joueur, l'ensemble des joueurs
+        reçoit l'appel, y compris celui qui à "envoyer" cet appel.
+        <br />
+        <br />
+        <img src="http://www.gotdotnet.com/codegallery/customization/images.aspx?fileId=9bdf8f5a-3a55-4561-af9d-8d48a83b2eb2&id=084d51d7-a295-4991-921e-4a861432c703&flg=1" /><br />
+        On remarque que la liaison en retour entre le "réseau" et le jeu se fait par événements.
+        De plus pour mettre à jour UI, il ne faut pas oublier d'appeler Invoke sur le Dispatcher
+        de l'UI si nécessaire.&nbsp;<br />
+        N'oublier pas d'ouvrir les ports que vous avez configurés....sinon....&nbsp;<br />
+        <br />
+        <span style="text-decoration: underline"><strong>Le Workflow<br />
+        </strong></span>Dernière brique du framework 3.0 utilisé dans ce jeu.
+
+
+Comme vous pouvez le constater le workflow n'a rien de bien complexe.<br />
+        <br />
+        <img src="http://www.gotdotnet.com/codegallery/customization/images.aspx?fileId=bbd06dfb-2a6f-4948-9de1-fa4c8354a085&id=084d51d7-a295-4991-921e-4a861432c703&flg=1" /><br />
+        <br />
+        Quand le joueur "serveur" clic sur le menu "Game"-"Start Multiplayer game", Le workflow
+        démarre et chacun recoit un "SendRequest".<br />
+        <br />
+        <img src="http://www.gotdotnet.com/codegallery/customization/images.aspx?fileId=e9d22807-ae0d-4548-a9e6-17486d91d45c&id=084d51d7-a295-4991-921e-4a861432c703&flg=1" /><br />
+        Le workflow se termine quand l'ensemble des joueurs on répondu, ou quand le delai
+        est dépassé (ici fixé à 10s).<br />
+        <br />
+        <br />
+        <br />
+
+Le jeu Tretris étant sous  licence, je fournit les <a href="http://codegallery.gotdotnet.com/GeniusTetris">
+            sources</a>, à vous de les compiler. 
+        <br />
+Pour la compilation il vous faudra : 
+        <br />
+        <ul>
+            <li>Visual Studio 2005 </li>
+            <li>Framework .Net 3.0</li>
+            <li>Framework .Net 3.0 SDK</li>
+            <li>Workflow extension for Visual studio</li>
+        </ul>
+        <br />
+        Amusez vous bien, et Bonnes fêtes à tous !&nbsp;
+	</body>
+</html>

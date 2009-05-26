@@ -1,0 +1,60 @@
+<UserControl x:Class="GeniusTetris.Dialogs.AboutUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:atp="clr-namespace:Microsoft.Samples.KMoore.WPFSamples.AnimatingTilePanel"
+    FontFamily="Arial Rounded MT Bold"
+    Loaded="OnLoaded"
+    >
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" MinHeight="50"/>
+        <RowDefinition Height="40"/>
+        <RowDefinition Height="30"/>
+        <RowDefinition Height="10"/>
+      </Grid.RowDefinitions>
+      <StackPanel Grid.Row="1" Margin="20,0,0,0">
+        <TextBlock  Text="this game is based on .Net framework 3.5" FontFamily="Tahoma"/>
+            <Grid>
+
+                <TextBlock  >
+            <Italic>Pierrick Gourlain, December 2006</Italic>
+            <Run FontFamily="Tahoma">. Visit</Run>
+            <Hyperlink FontFamily="Tahoma" NavigateUri="http://geniutetris.codeplex.com" RequestNavigate="OnGotoSite">WebSite</Hyperlink>
+            <Run FontFamily="Tahoma"> for new versions.</Run>
+            <!--<Run FontSize="7">November update</Run>-->
+                </TextBlock>
+            </Grid>
+            <TextBlock FontFamily="Tahoma">Updated : May 2009 (Windows Azure version)</TextBlock>
+      </StackPanel>
+
+      <DockPanel Grid.Row="0" LastChildFill="True">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="120"/>
+          </Grid.RowDefinitions>
+
+          <atp:AniTilePanel x:Name="tilePanel"  Grid.Row="0" VerticalAlignment="Center" 
+                            HorizontalAlignment="Center" 
+              ItemHeight="75"
+              ItemWidth="35"
+              Attraction="4"
+              Dampening="0.5"
+						  >
+          </atp:AniTilePanel>
+          <atp:AniTilePanel x:Name="tilePanel1"  Grid.Row="1" VerticalAlignment="Center" 
+                            HorizontalAlignment="Center" 
+              ItemHeight="120"
+              ItemWidth="100"
+              Attraction="4"
+              Dampening="0.9"
+              
+						  >
+          </atp:AniTilePanel>
+        </Grid>
+      
+    </DockPanel>
+
+      <Button Content="Close" Grid.Row="2" HorizontalAlignment="Center" Width="75" Click="CloseClick"/>
+    </Grid>
+</UserControl>
