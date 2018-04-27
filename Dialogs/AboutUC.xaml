@@ -8,12 +8,12 @@
     <Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height="*" MinHeight="50"/>
-        <RowDefinition Height="40"/>
+        <RowDefinition Height="45"/>
         <RowDefinition Height="30"/>
         <RowDefinition Height="10"/>
       </Grid.RowDefinitions>
       <StackPanel Grid.Row="1" Margin="20,0,0,0">
-        <TextBlock  Text="this game is based on .Net framework 3.5" FontFamily="Tahoma"/>
+        <TextBlock  Text="this game is based on .Net framework 4.5" FontFamily="Tahoma"/>
             <Grid>
 
                 <TextBlock  >
@@ -24,7 +24,7 @@
             <!--<Run FontSize="7">November update</Run>-->
                 </TextBlock>
             </Grid>
-            <TextBlock FontFamily="Tahoma">Updated : May 2009 (Windows Azure version)</TextBlock>
+            <TextBlock FontFamily="Tahoma">Updated : May 2013 (SignalR version)</TextBlock>
       </StackPanel>
 
       <DockPanel Grid.Row="0" LastChildFill="True">

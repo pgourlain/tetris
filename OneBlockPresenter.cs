@@ -68,7 +68,7 @@ namespace GeniusTetris
 
         private void DoChanged(string aproperty)
         {
-            Debug.WriteLine(string.Format("_Owner_DoChanged({0}, {1}, {2})", _x, _y, aproperty));
+            //Debug.WriteLine(string.Format("_Owner_DoChanged({0}, {1}, {2})", _x, _y, aproperty));
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(aproperty));
         }

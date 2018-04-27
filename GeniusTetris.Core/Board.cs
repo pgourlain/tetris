@@ -274,7 +274,7 @@ namespace GeniusTetris.Core
         {
             lock (lockOperationPending)
             {
-                Debug.WriteLine(string.Format("{0} : ShiftSegmentUp", Thread.CurrentThread.ManagedThreadId));
+                //Debug.WriteLine(string.Format("{0} : ShiftSegmentUp", Thread.CurrentThread.ManagedThreadId));
                 BeginUpdate();
                 try
                 {

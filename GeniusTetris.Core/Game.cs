@@ -90,7 +90,7 @@ namespace GeniusTetris.Core
 
         private void DoChanged(string apropname)
         {
-            Debug.WriteLine("Game.DoChange");
+            //Debug.WriteLine("Game.DoChange");
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(apropname));
         }

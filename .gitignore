@@ -1,0 +1,8 @@
+.vs
+*.scc
+**/bin/**
+**/obj/**
+Setup/*
+*.suo
+*.user
+packages

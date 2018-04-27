@@ -205,6 +205,25 @@ namespace GeniusTetris
 
         #region Multi players section
 
+        class ScorePlayer
+        {
+            public int Score { get; set; }
+            public int TeamScore { get; set; }
+            public string NickName { get; set; }
+            public bool IsYou { get; set; }
+            public string TeamName { get; set; }
+
+            internal static ScorePlayer FromPlayer(GeniusTetrisPlayer x)
+            {
+                return new ScorePlayer
+                {
+                    Score = x.Score,
+                    NickName = x.NickName,
+                    TeamName = GameOptions.Instance.Value.TeamName
+                };
+            }
+        }
+
         private void WaitForOtherPlayers()
         {
             MessageDlgUC dlg = new MessageDlgUC(null,
@@ -225,10 +244,22 @@ namespace GeniusTetris
         {
             //Sorted player by their score
             CollectionViewSource sortedCollection = new CollectionViewSource();
-            ObservableCollection<GeniusTetrisPlayer> allplayers = new ObservableCollection<GeniusTetrisPlayer>(app.GameMembersList);
-            allplayers.Add(app.CurrentPlayer);
+            ObservableCollection<ScorePlayer> allplayers = new ObservableCollection<ScorePlayer>(app.GameMembersList.Select(x => ScorePlayer.FromPlayer(x)));
             app.CurrentPlayer.Score = app.CurrentGame.Score;
+            var Me = ScorePlayer.FromPlayer(app.CurrentPlayer); 
+            Me.IsYou = true;
+            allplayers.Add(Me);
+            foreach (var teamGrp in allplayers.GroupBy(x => x.TeamName))
+            {
+                var teamScore = teamGrp.Sum(x => x.Score);
+                foreach (var player in teamGrp)
+                {
+                    player.TeamScore = teamScore;
+                }
+            }
             sortedCollection.Source = allplayers;
+            var grp = new PropertyGroupDescription("TeamName");
+            sortedCollection.GroupDescriptions.Add(grp);
             sortedCollection.SortDescriptions.Add(new SortDescription("Score", ListSortDirection.Descending));
 
             ScoresDlgUC dlg = new ScoresDlgUC();

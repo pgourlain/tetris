@@ -6,27 +6,101 @@
     Name="scoreuc"
     Loaded="OnLoaded">
   <UserControl.Resources>
-    <DataTemplate x:Key="scoretemplate">
+    <!--<DataTemplate x:Key="scoretemplate">
       <Grid HorizontalAlignment="Stretch">
         <TextBlock Text="{Binding NickName}" />
         <TextBlock Text="{Binding Score}" HorizontalAlignment="Right" Margin="0,0,35,0"/>
         <TextBlock Text="points" HorizontalAlignment="Right"/>
       </Grid>
+    </DataTemplate>-->
+    <DataTemplate x:Key="scoretemplate">
+        <Grid HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding TeamName}" Grid.Column="0"/>
+            <TextBlock Text="{Binding NickName}" Grid.Column="1"/>
+            <TextBlock Text="{Binding Path=Score, StringFormat='points'}"  HorizontalAlignment="Right" Margin="0,0,35,0" Grid.Column="2"/>
+        </Grid>
     </DataTemplate>
 
-  </UserControl.Resources>
+    </UserControl.Resources>
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition />
       <RowDefinition Height="30"/>
       <RowDefinition Height="10"/>
     </Grid.RowDefinitions>
-
-    <ListBox Name="lbScores" Grid.Row="0" Background="Transparent" 
+        <DataGrid Name="lbScores" ItemsSource="{Binding Path=.}" IsReadOnly="True" Background="Transparent" AutoGenerateColumns="False" IsEnabled="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Header="NickName" Binding="{Binding NickName}" IsReadOnly="True" Width="100"/>
+                <DataGridTextColumn  Header="Score" Binding="{Binding Score}" IsReadOnly="True" Width="70"/>
+                <DataGridTextColumn  Header="TeamScore" Binding="{Binding TeamScore}" IsReadOnly="True" Width="70">
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.GroupStyle>
+                <GroupStyle HidesIfEmpty="True">
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Path=TeamName, StringFormat='Team:{0}'}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Path=Name}"/>
+                                            <ItemsPresenter />
+                                        </StackPanel>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </DataGrid.GroupStyle>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="HeaderStyle">
+                        <Setter.Value>
+                            <Style TargetType="{x:Type DataGridRowHeader}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Setter Property="Width" Value="0"/>
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsYou}" Value="True" >
+                            <Setter Property="Background" Value="Orange" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Style.Triggers>
+                        <!--<DataTrigger Binding="{Binding IsYou}" Value="True" >
+                            <Setter Property="Background" Value="Red" />
+                        </DataTrigger>-->
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
+            <!-- mettre une data grid -->
+    <!--<ListBox Name="lbScores" Grid.Row="0" Background="Transparent" 
       ItemTemplate="{StaticResource scoretemplate}"         
              HorizontalContentAlignment="Stretch" Margin="30,0,30,0"
              ItemsSource="{Binding Path=.}">
-    </ListBox>
+    </ListBox>-->
     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
       <Button Name="bOk" Content="Ok" Width="75" Click="OkClick" Padding="10,0,10,0"/>
     </StackPanel>

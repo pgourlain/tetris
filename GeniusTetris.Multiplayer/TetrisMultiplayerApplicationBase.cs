@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace GeniusTetris.Multiplayer
 {
-    public class TetrisMultiplayerApplicationBase : ITetrisMultiplayerApplication, INotifyPropertyChanged
+    public abstract class TetrisMultiplayerApplicationBase : ITetrisMultiplayerApplication, INotifyPropertyChanged
     {
         protected Dispatcher Dispatcher { get; private set; }
 
@@ -25,7 +25,7 @@ namespace GeniusTetris.Multiplayer
             PlayersInMeshList = new System.Collections.ObjectModel.ObservableCollection<GeniusTetrisPlayer>();
             GameMembersList = new System.Collections.ObjectModel.ObservableCollection<GeniusTetrisPlayer>();
             Options = new ObservableCollection<byte>();            
-            GameOptions = new GameOptions();
+            GameOptions = GameOptions.Instance.Value;
             GameOptions.OnOptionsChanged += new EventHandler(GameOptions_OnOptionsChanged);
             CurrentPlayer = new GeniusTetrisPlayer()
             {
@@ -175,65 +175,29 @@ namespace GeniusTetris.Multiplayer
             CurrentGame.Start();
         }
 
-        public virtual void HideBoard()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void HideBoard();
 
-        public virtual void ShowBoard()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void ShowBoard();
 
-        public virtual void SendBoard(byte[,] board)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void SendBoard(byte[,] board);
 
-        public virtual void SendScore(int score)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void SendScore(int score);
 
-        public virtual void SendGameOver()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void SendGameOver();
 
-        public virtual void SendOption(GeniusTetrisPlayer toplayer, byte option)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void SendOption(GeniusTetrisPlayer toplayer, byte option);
 
-        public virtual void AcceptGameRequest()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void AcceptGameRequest();
 
-        public virtual void RejectGameRequest()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void RejectGameRequest();
 
-        public virtual void StartMultiplayerGameWF()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void StartMultiplayerGameWF();
 
-        public virtual void StopMultiPlayerGameWF()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void StopMultiPlayerGameWF();
 
-        public virtual void ConnectToMesh()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void ConnectToMesh();
 
-        public virtual void DisconnectFromMesh()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void DisconnectFromMesh();
 
 
         #region app events 

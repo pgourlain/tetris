@@ -180,7 +180,7 @@ namespace GeniusTetris.Core
                 return;
             lock (this._Board.lockOperationPending)
             {
-                Debug.WriteLine(string.Format("{0} : MoveShape", Thread.CurrentThread.ManagedThreadId));
+                //Debug.WriteLine(string.Format("{0} : MoveShape", Thread.CurrentThread.ManagedThreadId));
                 int horizontalMove = 0;
                 int verticalMove = 0;
                 switch (movement)
